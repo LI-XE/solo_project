@@ -62,7 +62,6 @@ const Cart = () => {
         type: "DELETE_CARTUNCOMPLIT",
         delete_cartuncomplit: response.data,
       });
-      
     });
   };
   const deletecart = async (id) => {
@@ -110,7 +109,9 @@ const Cart = () => {
                 {cartuncomplit?.cartproduct.map((data, i) => (
                   <tr key={i} className="row">
                     <td className="col-1 my-3">{i + 1}</td>
-                    <td className="col-3 my-3">{data.title}</td>
+                    <td className="col-3 my-3 fw-bold">
+                      {data.product[0].title}
+                    </td>
                     <td className="col-2 my-3">{data.price}</td>
                     <td className="col-1 my-3">{data.quantity}</td>
                     <td className="col-2 my-3">{data.subtotal}</td>
@@ -127,14 +128,13 @@ const Cart = () => {
                       >
                         +
                       </button>
-                      <a
+                      <button
                         className="btn btn-danger"
-                        href="#"
-                        role="button"
+                        type="submit"
                         onClick={() => deletecartproduct(data.id)}
                       >
                         <img src="img\trash.svg" />
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -164,7 +164,7 @@ const Cart = () => {
                   <img src="/img/empty_cart.png" alt="Empty Cart"></img>
                 </div>
                 <Link
-                  to="/layout"
+                  to="/category/1"
                   className="px-5 py-2 rounded-pill btn-primary text-white font-bold m-5"
                 >
                   Go back to order!
@@ -182,7 +182,7 @@ const Cart = () => {
             {cart_product_length != 0 && (
               <div className="col">
                 <Link
-                  to="/layout"
+                  to="/category/1"
                   className="px-5 py-2 rounded-pill btn-primary text-white font-bold m-5"
                 >
                   Order More
